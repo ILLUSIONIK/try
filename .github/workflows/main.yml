@@ -3,7 +3,7 @@ name: My-GithubActions-Trying
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   my_testing:
     runs-on: ubuntu-latest
