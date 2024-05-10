@@ -19,7 +19,7 @@ jobs:
           install: git mingw-w64-ucrt-x86_64-gcc
       - name: Install make
         run: |
-          pacman -S make
+           pacman -S --noconfirm make
       - name: Build
         run: |
           make build
