@@ -6,18 +6,25 @@ on:
       - main
 
 jobs:
-  msys2-ucrt64:
+  build:
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: msys2/setup-msys2@v2
-        with:
-          msystem: UCRT64
-          update: true
-          install: git mingw-w64-ucrt-x86_64-gcc make
-      - name: Build
-        run: |
-          make build
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install MSYS2
+      run: |
+        choco install msys2 -y
+        RefreshEnv.cmd
+      shell: powershell
+
+    - name: Build
+      run: |
+        bash -c "make build"
+      shell: bash
+
+    - name: Clean up
+      run: |
+        bash -c "make clean"
+      shell: bash
