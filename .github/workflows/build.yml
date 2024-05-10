@@ -18,9 +18,12 @@ jobs:
           msystem: UCRT64
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
+      - name: Install Chocolatey
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
       - name: Install Go
         run: |
-          choco install golang
+          choco install golang -y
       - name: Build
         run: |
           go build
