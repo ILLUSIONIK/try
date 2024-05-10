@@ -6,17 +6,26 @@ on:
       - main  
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  msys2-ucrt64:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.21.1
-
-    - name: Build
-      run: go build ./...
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-ucrt-x86_64-gcc
+    
+      - name: Checkout repository
+        uses: actions/checkout@v2
+  
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.21.1
+  
+      - name: Build
+        run: go build ./...
