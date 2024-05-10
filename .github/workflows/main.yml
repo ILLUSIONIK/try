@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   msys2-ucrt64:
@@ -24,4 +21,7 @@ jobs:
       - name: CI-Build
         run: |
           echo 'Running in MSYS2!'
-          make -f Makefile build
+          ./ci-build.sh
+      - name: Build
+        run: |
+          make build
