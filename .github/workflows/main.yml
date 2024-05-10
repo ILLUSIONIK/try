@@ -1,5 +1,6 @@
 name: Build
 
+
 on:
   push:
     branches:
@@ -10,25 +11,23 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up MSYS2
-      uses: msys2/setup-msys2@v2
+    - name: Set up Go
+      uses: actions/setup-go@v2
       with:
-        msystem: UCRT64
-        update: true
-        install: git mingw-w64-ucrt-x86_64-gcc
+        go-version: '1.22.1'
 
     - name: Build
       run: |
-        make build
+        make -f Makefile build
       shell: bash
 
     - name: Clean up
       run: |
-        make clean
+        make -f Makefile clean
       shell: bash
