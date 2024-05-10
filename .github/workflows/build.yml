@@ -1,5 +1,4 @@
 name: Build
-
 on:
   push:
     branches:
@@ -18,10 +17,10 @@ jobs:
           msystem: UCRT64
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
-      - name: Install Go
+      - name: Install make
         run: |
-          choco install golang
+          pacman -S make
       - name: Build
         run: |
-          go build
+          make build
         working-directory: ${{ github.workspace }}
