@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  my_testing:
+  building:
     runs-on: ubuntu-latest
 
     steps:
