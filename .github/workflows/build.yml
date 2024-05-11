@@ -32,3 +32,5 @@ jobs:
           msystem: MINGW64
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
+      - name: glib
+         pacman -S glib2
