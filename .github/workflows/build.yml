@@ -28,6 +28,13 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
+      - name: installMsys
+        uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-ucrt-x86_64-gcc
       - name: Install dlib headers
         run: pacman -S --noconfirm mingw-w64-x86_64-dlib-devel
       - name: Install build dependencies
