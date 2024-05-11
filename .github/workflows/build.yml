@@ -27,7 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install dlib in MSYS2
-        run: pacman -S mingw-w64-x86_64-dlib
+        run: |
+          msys2 pacman --noconfirm -S mingw-w64-x86_64-dlib
       - name: Setup MSYS2
         uses: msys2/setup-msys2@v2
         with:
