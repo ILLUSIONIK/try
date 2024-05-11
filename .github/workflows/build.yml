@@ -36,6 +36,6 @@ jobs:
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
       - name: Install dlib headers
-        run: pacman -S --noconfirm mingw-w64-x86_64-dlib-devel
+        run: pacman -S --noconfirm mingw-w64-x86_64-dlib
       - name: Install build dependencies
         run: pacman -S --noconfirm git mingw-w64-ucrt-x86_64-gcc
