@@ -1,4 +1,4 @@
-name: Go Build
+name: GoBuild
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
 
 jobs:
   build:
-    needs: [msys2-ucrt64]
     runs-on: windows-latest
+    needs: [msys2-ucrt64]
 
     steps:
     - name: Checkout repository
@@ -21,6 +21,7 @@ jobs:
 
     - name: Build
       run: go build ./...
+
   msys2-ucrt64:
     runs-on: windows-latest
     defaults:
@@ -28,9 +29,10 @@ jobs:
         shell: msys2 {0}
     steps:
       - uses: actions/checkout@v3
+      - name: Install dlib in MSYS2
+        run: pacman -S mingw-w64-x86_64-dlib
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
-
