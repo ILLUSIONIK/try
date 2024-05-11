@@ -1,4 +1,5 @@
 name: Go Build
+
 on:
   push:
     branches:
@@ -20,17 +21,19 @@ jobs:
 
     - name: Build
       run: go build ./...
+
   msys2-ucrt64:
     runs-on: windows-latest
     defaults:
       run:
         shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v3
+      - name: installMsys
+        uses: actions/checkout@v3
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
-      - name: glib
-          pacman -S glib2
+      - name: Install glib
+        run: pacman -S --noconfirm glib2
