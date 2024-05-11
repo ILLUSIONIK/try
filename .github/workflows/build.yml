@@ -36,4 +36,5 @@ jobs:
           update: true
           install: git mingw-w64-ucrt-x86_64-gcc
       - name: Install glib
-        run: pacman -Ss --noconfirm glib
+        run: pacman -S --noconfirm mingw-w64-x86_64-dlib
+
