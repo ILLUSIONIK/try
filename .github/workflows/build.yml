@@ -3,7 +3,7 @@ name: Go Build
 on:
   push:
     branches:
-      - main  # Замените на имя вашей основной ветки
+      - main 
 
 jobs:
   build:
