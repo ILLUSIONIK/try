@@ -1,31 +1,25 @@
-name: GoBuild
-
-on:
-  push:
-    branches:
-      - main
+name: MSYS2
+on: [ release ]
 
 jobs:
-  build:
+  msys2-ucrt64:
     runs-on: windows-latest
 
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Install build dependencies
-        uses: msys2/setup-msys2@v2
+      - uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
-          install: git mingw-w64-x86_64-gcc mingw-w64-x86_64-dlib
+          install: mingw-w64-x86_64-gcc mingw-w64-x86_64-dlib mingw-w64-x86_64-lapack mingw-w64-x86_64-cblas
+          path-type: inherit
 
       - name: Set up Go and Build Dependencies
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
           go-version: 1.22.2
 
       - name: Build
-        run: go build
-
+        run: msys2 -c 'go build'
+        #создавать артефакт
