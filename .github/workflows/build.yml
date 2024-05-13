@@ -22,8 +22,9 @@ jobs:
 
       - name: Build
         run: msys2 -c 'go build'
-      - name: artifact
+      
+      - name: Save artifact
         uses: actions/upload-artifact@v2
         with:
-          name: artifact
-          path: example.exe
+          name: built-program
+          path: .
