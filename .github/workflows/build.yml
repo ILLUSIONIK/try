@@ -24,7 +24,7 @@ jobs:
         run: go get -u github.com/go-bindata/go-bindata/...
 
       - name: Verify go-bindata installation
-        run: go-bindata -h
+        run: $GOPATH/bin/go-bindata -h
 
       - name: Embed models and dependencies
         run: go-bindata -o models.go go.mod/
