@@ -23,8 +23,14 @@ jobs:
       - name: Build
         run: msys2 -c 'go build -o server.exe'
       
+      - name: Create artifacts directory
+        run: mkdir artifacts
+      
+      - name: Move server.exe to artifacts directory
+        run: mv server.exe artifacts/
+      
       - name: Save artifact
         uses: actions/upload-artifact@v2
         with:
           name: built-program
-          path: artifacts/server.exe
+          path: artifacts/
