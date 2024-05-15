@@ -21,7 +21,7 @@ jobs:
           go-version: 1.22.2
 
       - name: Build
-        run: msys2 -c 'go build' -o server.exe
+        run: msys2 -c 'go build -o server.exe'
       
       - name: Save artifact
         uses: actions/upload-artifact@v2
