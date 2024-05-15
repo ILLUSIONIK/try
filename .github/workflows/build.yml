@@ -1,5 +1,5 @@
 name: MSYS2
-on: [ release, push ]
+on: [ release ]
 
 jobs:
   msys2-ucrt64:
@@ -21,16 +21,10 @@ jobs:
           go-version: 1.22.2
 
       - name: Build
-        run: msys2 -c 'go build -o server.exe'
-      
-      - name: Create artifacts directory
-        run: mkdir artifacts
-      
-      - name: Move server.exe to artifacts directory
-        run: mv server.exe artifacts/
-      
+        run: msys2 -c 'go build -o suvva-virtual-device.exe'
+
       - name: Save artifact
         uses: actions/upload-artifact@v2
         with:
           name: built-program
-          path: artifacts/
+          path: suvva-virtual-device.exe
