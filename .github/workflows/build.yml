@@ -20,6 +20,13 @@ jobs:
         with:
           go-version: 1.22.2
 
+      - name: Install go-bindata
+        run: go get -u github.com/go-bindata/go-bindata/...
+
+      - name: Embed models and dependencies
+        run: go-bindata -o models.go go.mod/
+
+
       - name: Build
         run: msys2 -c 'go build -o suvva-virtual-device.exe'
 
