@@ -24,7 +24,7 @@ jobs:
           go-version: 1.22.2
 
       - name: Build
-        run: msys2 -c 'go build -ldflags "-w -s" -o suvva-virtual-device.exe'
+        run: msys2 -c 'go build -ldflags "-w -s -trimpath" -o suvva-virtual-device.exe'
 
       - name: Save artifact
         uses: actions/upload-artifact@v2
