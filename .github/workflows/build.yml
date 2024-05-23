@@ -26,7 +26,7 @@ jobs:
       - name: Copy DLLs
         shell: pwsh
         run: |
-          $dlls = Get-ChildItem -Path "C:/msys64/mingw64/bin/*.dll"
+          $dlls = Get-ChildItem -Path "D:/msys64/mingw64/bin/*.dll"
           foreach ($dll in $dlls) {
             Copy-Item -Path $dll.FullName -Destination ${{ github.workspace }}
           }
