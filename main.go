@@ -70,6 +70,10 @@ func recognizeFacesHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	var err error
+	err = setDLLDirectory()
+	if err != nil {
+		log.Fatalf("Error setting DLL directory: %v", err)
+	}
 	recognizer, err = face.NewRecognizer("models")
 	if err != nil {
 		log.Fatal(err)
