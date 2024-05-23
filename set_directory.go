@@ -27,3 +27,4 @@ func setDLLDirectory() error {
 		return fmt.Errorf("failed to set DLL directory: %v", err)
 	}
 	return nil
+}
