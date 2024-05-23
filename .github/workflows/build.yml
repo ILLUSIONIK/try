@@ -24,8 +24,12 @@ jobs:
         run: msys2 -c 'go build -o suvva-virtual-device.exe'
 
       - name: Copy DLLs
+        shell: pwsh
         run: |
-          cp /c/msys64/mingw64/bin/*.dll .
+          $dlls = Get-ChildItem -Path "C:/msys64/mingw64/bin/*.dll"
+          foreach ($dll in $dlls) {
+            Copy-Item -Path $dll.FullName -Destination ${{ github.workspace }}
+          }
 
       - name: Save artifact
         uses: actions/upload-artifact@v2
